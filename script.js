@@ -1,7 +1,3 @@
-let currentTime = new Date()
-let year = currentTime.getFullYear() 
-
-
 class User {
     constructor (firstName, lastName, age) {
         this._firstName = firstName;
@@ -10,6 +6,8 @@ class User {
     }
 
     get birthYear() {
+        const currentTime = new Date()
+        const year = currentTime.getFullYear() 
         return year - this._age;
     }
     get fullName() {
@@ -21,19 +19,16 @@ class User {
 
 class Student extends User {
     static MIN_GRADE_FOR_SCHOLARSHIP = 4;
-    constructor (firstName, lastName, age, group, averageGrade) {
-        super (firstName, lastName, age)
+
+    constructor(firstName, lastName, age, group, averageGrade) {
+        super(firstName, lastName, age)
         this.group = group;
         this.averageGrade = averageGrade;
     }
 
     
-    isEligibleForScholarship = function (){
-        if (this.averageGrade >= Student.MIN_GRADE_FOR_SCHOLARSHIP) {
-            return true;
-        } else {
-            return false;
-        }   
+    isEligibleForScholarship() {
+        return this.averageGrade >= Student.MIN_GRADE_FOR_SCHOLARSHIP 
     }
     
 }
@@ -47,13 +42,14 @@ class Teacher extends User {
     }
 
 
-    isGroupTeacher = function(groupName) {
+    isGroupTeacher(groupName) {
         for (let i = 0; i < this.groups.length; i++) {
             let thisGroupName = this.groups[i];
             if (groupName === thisGroupName) {
                 return true;
             }
-        } return false;
+        } 
+        return false;
     }
 }
 
